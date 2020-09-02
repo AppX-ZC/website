@@ -9,9 +9,9 @@ exports.register = catchAsync(async (req, res, next) => {
   sendEmail({
     from: '<appxzewailcity@gmail.com>',
     to: req.body.email,
-    subject: 'You are successfuly registed with us, Thanks',
+    subject: 'AppX 20 | summit',
     text:
-      'BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA'
+      'Thanks for filling out our form. We will send you the details as soon as possible.\n Best regards,\n AppX 20 team.'
   });
 
   res.status(201).json({
