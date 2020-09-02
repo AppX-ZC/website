@@ -9,9 +9,9 @@
   background-color: #fff;
   box-shadow: 0px 10px 30px #00000029;
   border-radius: 30px;
-  padding: 2rem 4.5rem;
+  padding: 2rem 2.5rem;
   margin-bottom: 4rem;
-  width: 100%
+  width: 100%;
 }
 
 .formTitle {
@@ -20,3 +20,31 @@
   line-height: 3.5rem;
   margin-bottom: 5rem;
 }
+
+.formLabel {
+  color: #606060;
+  font-size: 1.5rem;
+  white-space: nowrap;
+}
+.formLabel:after {
+  content: "*";
+  margin-left: 3px;
+}
+
+.formInput {
+  border: 1px solid #c1c1c1;
+  border-radius: 4px;
+  height: 4rem;
+  border-left: none;
+  font-size: 1.5rem;
+}
+
+.formInput[type="select"] {
+  border: 1px solid #c1c1c1;
+}
+/* 
+.formInput [] {
+
+} */
+
+

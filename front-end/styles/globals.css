@@ -1,14 +1,14 @@
 @font-face {
-  font-family: 'Segoe UI';
-  src: url('/fonts/Segoe_UI.ttf');
+  font-family: "Segoe UI";
+  src: url("/fonts/Segoe_UI.ttf");
 }
-
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Segoe UI', Arial, Helvetica
+  font-family: "Segoe UI", Arial, Helvetica;
+  background-color: #efefef;
 }
 
 a {
@@ -28,4 +28,19 @@ html {
   .container {
     max-width: 85%;
   }
+}
+
+.input-group-text {
+  background-color: transparent;
+  padding: 0 1rem;
+  border-right: none;
+}
+
+.test {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.test span {
+  margin-left: 1rem;
 }

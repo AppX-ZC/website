@@ -39,13 +39,35 @@ export default function Home() {
           label: "National ID",
           icon: faIdCard,
           name: "nationalId",
+          size: 0.5,
+        },
+        {
+          type: "select",
+          label: "Governorate of Residence",
+          name: "governorate",
+          options: ["Menoufiya", "Cairo", "alexandria"],
+          size: 0.5,
         },
       ],
     },
     {
       title: "Where did you here about us ?",
-      data:[]
-    }
+      data: [
+        { type: "checkbox", label: "Social media" },
+        { type: "checkbox", label: "Search engines" },
+        { type: "checkbox", label: "A friend" },
+        { type: "checkbox", label: "Other" },
+      ],
+    },
+    {
+      title: "Academic Background *",
+      data: [
+        { type: "radio", label: "Social media", name: "academic" },
+        { type: "radio", label: "Search engines", name: "academic" },
+        { type: "radio", label: "A friend", name: "academic" },
+        { type: "radio", label: "Other", name: "academic" },
+      ],
+    },
   ];
 
   return (

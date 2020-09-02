@@ -12,7 +12,6 @@ import {
 } from "reactstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import styles from "../styles/Forms.module.css";
 
 const FormComponent = ({ data }) => {
@@ -21,24 +20,84 @@ const FormComponent = ({ data }) => {
     <div className="col-md-6 mx-auto">
       <Form className={styles.form}>
         {data.map((form, index) => (
-          <div className={styles.formCard} key={index}>
+          <div className={styles.formCard + " row"} key={index}>
             <h4 className={styles.formTitle}> {form.title} </h4>
+            {form.data.map((input, index) => {
+              if (input.type === "select") {
+                return (
+                  <FormGroup
+                    key={index}
+                    className={
+                      input.size && input.size === 0.5 ? "col-sm-6" : "col-12"
+                    }
+                  >
+                    <Label for={input.name} className={styles.formLabel}>
+                      {input.label}
+                    </Label>
+                    <Input
+                      type="select"
+                      name={input.name}
+                      id={input.name}
+                      className={styles.formInput}
+                      style={{ borderLeft: " 1px solid #c1c1c1 " }}
+                    >
+                      {input.options.map((option) => (
+                        <option value={option}>{option}</option>
+                      ))}
+                    </Input>
+                  </FormGroup>
+                );
+              }
 
-            {form.data.map((input, index) => (
-              <FormGroup key={index}>
-                <Label for={input.name}>{input.label}</Label>
-                <InputGroup>
-                  <InputGroupAddon addonType="append">
-                    <InputGroupText>
-                      <FontAwesomeIcon icon={input.icon} />
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input type={input.type} name={input.name} id={input.name} />
-                </InputGroup>
-              </FormGroup>
-            ))}
+              if (input.type === "checkbox" || input.type === "radio") {
+                return (
+                  <FormGroup
+                    key={index}
+                    className={
+                      input.size && input.size === 0.5
+                        ? "col-sm-6"
+                        : "col-12" + " test"
+                    }
+                  >
+                    <Label check>
+                      <Input
+                        type={input.type}
+                        name={input.name ? input.name : null}
+                      />
+                      <span>{input.label} </span>
+                    </Label>
+                  </FormGroup>
+                );
+              }
+              return (
+                <FormGroup
+                  key={index}
+                  className={
+                    input.size && input.size === 0.5 ? "col-sm-6" : "col-12"
+                  }
+                >
+                  <Label for={input.name} className={styles.formLabel}>
+                    {input.label}
+                  </Label>
+                  <InputGroup>
+                    <InputGroupAddon addonType="append">
+                      <InputGroupText style={{ width: 40 }}>
+                        <FontAwesomeIcon icon={input.icon} className="w-100" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      type={input.type}
+                      name={input.name}
+                      id={input.name}
+                      className={styles.formInput}
+                    />
+                  </InputGroup>
+                </FormGroup>
+              );
+            })}
           </div>
         ))}
+        <Button>Submit</Button>
       </Form>
     </div>
   );
