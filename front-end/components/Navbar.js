@@ -16,6 +16,8 @@ import {
 } from "reactstrap";
 import classNames from "classnames";
 
+import Link from "next/link";
+
 import styles from "../styles/Navbar.module.css";
 
 const NavbarIE = (props) => {
@@ -65,6 +67,16 @@ const NavbarIE = (props) => {
           <Collapse isOpen={isOpen} navbar>
             <Nav className={styles.navLinks} navbar>
               <NavItem>
+                <Link href="/summit">
+                  <NavLink className={styles.navLink}>Summit </NavLink>
+                </Link>
+              </NavItem>
+              <NavItem>
+                <Link href="/hackathon">
+                  <NavLink className={styles.navLink}>Hackathon </NavLink>
+                </Link>
+              </NavItem>
+              {/* <NavItem>
                 <NavLink className={styles.navLink}>Home</NavLink>
               </NavItem>
               <NavItem>
@@ -78,7 +90,7 @@ const NavbarIE = (props) => {
               </NavItem>
               <NavItem>
                 <NavLink className={styles.navLink}>Contact</NavLink>
-              </NavItem>
+              </NavItem> */}
             </Nav>
           </Collapse>
         </Container>

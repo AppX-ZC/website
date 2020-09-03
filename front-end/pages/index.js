@@ -1,89 +1,42 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
-import NavbarIE from "../components/Navbar";
-import HeroComponent from "../components/HeroComponent";
-import FormComponent from "../components/FormComponent";
-import {
-  faEnvelope,
-  faUser,
-  faPhoneAlt,
-  faIdCard,
-} from "@fortawesome/free-solid-svg-icons";
-
 export default function Home() {
-  const green = [
-    {
-      title: "Personal Information",
-      data: [
-        {
-          type: "email",
-          label: "Your Email",
-          icon: faEnvelope,
-          name: "email",
-        },
-        {
-          type: "text",
-          label: "Name",
-          icon: faUser,
-          name: "email",
-        },
-        {
-          type: "text",
-          label: "Phone Number",
-          icon: faPhoneAlt,
-          name: "phone",
-        },
-        {
-          type: "text",
-          label: "National ID",
-          icon: faIdCard,
-          name: "nationalId",
-          size: 0.5,
-        },
-        {
-          type: "select",
-          label: "Governorate of Residence",
-          name: "governorate",
-          options: ["Menoufiya", "Cairo", "alexandria"],
-          size: 0.5,
-        },
-      ],
-    },
-    {
-      title: "Where did you here about us ?",
-      data: [
-        { type: "checkbox", label: "Social media" },
-        { type: "checkbox", label: "Search engines" },
-        { type: "checkbox", label: "A friend" },
-        { type: "checkbox", label: "Other" },
-      ],
-    },
-    {
-      title: "Academic Background *",
-      data: [
-        { type: "radio", label: "Social media", name: "academic" },
-        { type: "radio", label: "Search engines", name: "academic" },
-        { type: "radio", label: "A friend", name: "academic" },
-        { type: "radio", label: "Other", name: "academic" },
-      ],
-    },
-  ];
-
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div className={styles.introPage}>
+      <div className="container">
+        <Head>
+          <title>Create Next App</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <div className={styles.logoBoxes}>
+          <img src="/zewil_city_logo.png" alt="" className={styles.logoImage} />
+          <img src="/powered_by.png" alt="" className={styles.logoImage} />
+          <img src="/appex_logo.png" alt="" className={styles.logoImage} />
+        </div>
 
-      <NavbarIE />
-      <HeroComponent />
-      <div className={styles.poweredBy}>
-        <span> Powered by</span>
-        <img src="/powered_by.png" alt="" className="ml-5" />
+        <div className={styles.introContainer}>
+          <div className={styles.introLeft}>
+            <h2>APPX'20</h2>
+            <p>Think, Act, And Change...</p>
+            <div className="row">
+              <div className=" col-md-6">
+                <a href="/hackathon" className="btn btn-primary" style={{backgroundColor: '#18558B'}}>
+                  Register for Hackathon
+                </a>
+              </div>
+              <div className=" col-md-6">
+                <a href="/summit" className="btn btn-primary" style={{backgroundColor: '#3ABF26'}}>
+                  Register for Summit
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className={styles.introRight}>
+            <img src="/intro.svg" alt="" />
+          </div>
+        </div>
       </div>
-      <FormComponent data={green} />
     </div>
   );
 }

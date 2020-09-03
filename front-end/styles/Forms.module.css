@@ -42,9 +42,13 @@
 .formInput[type="select"] {
   border: 1px solid #c1c1c1;
 }
-/* 
-.formInput [] {
 
-} */
-
-
+.btn {
+  margin-top: 2rem;
+  padding: 1rem 4rem;
+  font-size: 2rem;
+  color: #fff;
+  background: #55cb43;
+  border-radius: 8px;
+  border: none;
+}

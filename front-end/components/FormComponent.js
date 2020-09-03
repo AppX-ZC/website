@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Form,
@@ -15,14 +15,50 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "../styles/Forms.module.css";
 
 const FormComponent = ({ data }) => {
-  console.log(data);
+  const [formData, setFormData] = useState({});
+
+  const handleChange = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
+    const updatedData = { ...formData, [name]: value };
+    setFormData(updatedData);
+  };
+
+  const handleSubmit = () => {
+    console.log(formData);
+  };
+
   return (
     <div className="col-md-6 mx-auto">
-      <Form className={styles.form}>
+      <Form className={styles.form + " pb-5"}>
         {data.map((form, index) => (
           <div className={styles.formCard + " row"} key={index}>
-            <h4 className={styles.formTitle}> {form.title} </h4>
+            {form.title ? (
+              <h4 className={styles.formTitle}> {form.title} </h4>
+            ) : null}
             {form.data.map((input, index) => {
+              if (input.type === "textArea") {
+                return (
+                  <FormGroup style={{ width: 100 + "%" }}>
+                    <Label
+                      for={input.name}
+                      className={styles.formTitle}
+                      style={{ marginBottom: 0 }}
+                    >
+                      {input.label}
+                    </Label>
+                    {input.subLabel ? <p> {input.subLabel} </p> : null}
+                    <Input
+                      type="textarea"
+                      name={input.name}
+                      id={input.name}
+                      className={styles.formInput}
+                      onChange={(e) => handleChange(e)}
+                      style={{ borderLeft: " 1px solid #c1c1c1 " }}
+                    />
+                  </FormGroup>
+                );
+              }
               if (input.type === "select") {
                 return (
                   <FormGroup
@@ -40,9 +76,13 @@ const FormComponent = ({ data }) => {
                       id={input.name}
                       className={styles.formInput}
                       style={{ borderLeft: " 1px solid #c1c1c1 " }}
+                      onChange={(e) => handleChange(e)}
                     >
-                      {input.options.map((option) => (
-                        <option value={option}>{option}</option>
+                      <option>select</option>
+                      {input.options.map((option, index) => (
+                        <option value={option} key={index}>
+                          {option}
+                        </option>
                       ))}
                     </Input>
                   </FormGroup>
@@ -63,6 +103,8 @@ const FormComponent = ({ data }) => {
                       <Input
                         type={input.type}
                         name={input.name ? input.name : null}
+                        value={input.label}
+                        onChange={(e) => handleChange(e)}
                       />
                       <span>{input.label} </span>
                     </Label>
@@ -90,6 +132,7 @@ const FormComponent = ({ data }) => {
                       name={input.name}
                       id={input.name}
                       className={styles.formInput}
+                      onChange={(e) => handleChange(e)}
                     />
                   </InputGroup>
                 </FormGroup>
@@ -97,7 +140,9 @@ const FormComponent = ({ data }) => {
             })}
           </div>
         ))}
-        <Button>Submit</Button>
+        <Button onClick={handleSubmit} className={styles.btn}>
+          Send
+        </Button>
       </Form>
     </div>
   );
