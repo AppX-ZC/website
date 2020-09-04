@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
+process.on('uncaughtException', err => {
+  console.log('Uncaught Exception, Server Closing Down...');
+  console.log(err.name, err.message, err.stack);
+  process.exit(1);
+});
+
 dotenv.config({ path: './config.env' });
 
 const app = require('./app');
@@ -21,6 +27,22 @@ mongoose
   .catch('Error in connection to DB');
 
 const port = 3000;
-app.listen(port, (req, res) => {
+const server = app.listen(port, (req, res) => {
   console.log(`Server Running on port ${port}`);
+});
+
+process.on('unhandledRejection', err => {
+  console.log('Unhandled Rejection, Server Closing Down...');
+  console.log(err.name, err.message);
+
+  server.close(() => {
+    process.exit(1);
+  });
+});
+
+process.on('SIGTERM', () => {
+  console.log('SIGTERM Recived, Closing Down...');
+  server.close(() => {
+    console.log('Process Terminated');
+  });
 });

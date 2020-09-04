@@ -14,7 +14,10 @@ const authController = require('./controllers/authController');
 
 const app = express();
 
+app.enable('trust proxy');
+
 app.use(helmet());
+
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
 //Data Santization against NoSQL query injection
